@@ -67,9 +67,10 @@ function newConnection(socket) {
   }
 
   socket.on('chooseGame', chooseGame)
-    gNum = Math.floor(Math.random() * 5) + 1
-    function chooseGame(data) {
+  gNum = Math.floor(Math.random() * 5) + 1
 
+  function chooseGame(data) {
+    gNum = Math.floor(Math.random() * 5) + 1
     if (gNum == 1) {
       io.in('room-' + data.roomno).emit("setupGameOne", GameOneInitialize());
     }
@@ -246,8 +247,6 @@ function newConnection(socket) {
     db.loadDatabase()
     db.update({ _id: "id1" }, { $inc: { count: 1 } }, { multi: false }, function () { })
   }
-
-
 
   function clientTwoWon() {
     db.loadDatabase()

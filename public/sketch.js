@@ -14,7 +14,7 @@ function setup() {
   createCanvas(displayWidth, displayHeight)
   rectMode(CENTER)
   textAlign(CENTER, CENTER)
-  socket = io.connect('192.168.1.36:1124/')
+  socket = io.connect('localhost:1124')
   socket.on('waiting', g.waitingForPlayer)
 
   socket.on('clientNumber', function (clients) {
@@ -23,10 +23,10 @@ function setup() {
   socket.on('connectToRoom', function (data) {
     roomno = data
   })
+
   //-----------------------------GameOne---------------------------------//
   socket.on('setupGameOne', function (data) {
     gNum = 1
-
     gOne = new GameOne(data)
   })
   socket.on('addcOnePointGameOne', function (data) {
@@ -35,12 +35,12 @@ function setup() {
   socket.on('addcTwoPointGameOne', function (data) {
     cTwoPointGameOne = data
   })
+
   //-----------------------------GameTwo---------------------------------//
   socket.on('setupGameTwo', function (data) {
     gNum = 2
     gTwo = new GameTwo(data, c)
   })
-
 
   //-----------------------------GameThree---------------------------------//
   socket.on('setupGameThree', function (data) {
